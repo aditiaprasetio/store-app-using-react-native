@@ -89,7 +89,8 @@ export function CarouselProduct(props: IPropsCarouselProduct) {
                 backgroundColor: '#ffffff',
                 borderRadius: 4,
                 marginRight: 5,
-              }}>
+              }}
+              onPress={() => props.onClick(product)}>
               <Text
                 style={{color: '#444444', fontSize: 11, textAlign: 'center'}}>
                 +

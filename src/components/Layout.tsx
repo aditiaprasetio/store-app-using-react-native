@@ -14,6 +14,8 @@ import {connect} from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {IconMenuClose} from './IconMenuClose';
 import {ICartState} from '../redux/reducers/cart';
+import {useNavigation, useRoute} from '@react-navigation/native';
+import {LAYOUT} from '../assets/style';
 
 type IPropsLayout = {
   cartData: ICartState;
@@ -24,54 +26,39 @@ type IPropsLayout = {
 
 const listMenu = [
   {
-    key: 'dashboard',
+    key: 'Dashboard',
     icon: 'home-outline',
     icon_selected: 'home',
   },
   {
-    key: 'favorite',
+    key: 'Favorite',
     icon: 'heart-outline',
     icon_selected: 'heart',
   },
   {
-    key: 'account',
+    key: 'Account',
     icon: 'person-outline',
     icon_selected: 'person',
   },
 ];
 function Layout(props: IPropsLayout) {
-  const [selectedMenu, setSelectedMenu] = useState('dashboard');
+  const navigation = useNavigation();
+  const route = useRoute();
 
   return (
     <SafeAreaView
       style={{
         flex: 1,
-        backgroundColor: Platform.OS === 'ios' ? '#f2f2f2' : '',
+        backgroundColor: '#ffffff',
       }}>
       <StatusBar backgroundColor="#333333" barStyle="light-content" />
 
       {/** BACKGROUND ROUNDED */}
-      <View
-        style={{
-          position: 'absolute',
-          backgroundColor: '#f2f2f2',
-          borderTopRightRadius: 250,
-          width: '100%',
-          height: '100%',
-          zIndex: 0,
-        }}></View>
+      <View style={LAYOUT.background_rounded}></View>
 
       <View style={{flex: 1, zIndex: 10}}>
         {/** HEADER */}
-        <View
-          style={{
-            height: 40,
-            // backgroundColor: '#f2f2f2',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            width: '100%',
-            padding: 10,
-          }}>
+        <View style={LAYOUT.header}>
           <View style={{flexShrink: 1}}>
             <IconMenuClose />
           </View>
@@ -95,7 +82,7 @@ function Layout(props: IPropsLayout) {
 
         {/** MAIN CONTENT */}
         <ScrollView
-          contentContainerStyle={{flexGrow: 1, padding: 10}}
+          contentContainerStyle={{flexGrow: 1, padding: 15}}
           scrollEventThrottle={400}
           refreshControl={
             <RefreshControl
@@ -108,22 +95,11 @@ function Layout(props: IPropsLayout) {
         </ScrollView>
 
         {/** BOTTOM TAB */}
-        <View
-          style={[
-            {
-              position: 'absolute',
-              flexDirection: 'row',
-              height: 50,
-              width: '100%',
-              // backgroundColor: '#f2f2f2',
-              bottom: 0,
-              justifyContent: 'space-between',
-            },
-          ]}>
+        <View style={LAYOUT.bottom_menu}>
           {listMenu.map((menu, key) => {
             return (
               <TouchableOpacity
-                onPress={() => setSelectedMenu(menu.key)}
+                onPress={() => navigation.navigate(menu.key)}
                 key={menu.key}
                 style={{
                   flex: 1,
@@ -132,7 +108,7 @@ function Layout(props: IPropsLayout) {
                   padding: 10,
                   justifyContent: 'center',
                 }}>
-                {selectedMenu === menu.key ? (
+                {route.name === menu.key ? (
                   <Ionicons
                     name={menu.icon_selected}
                     size={30}

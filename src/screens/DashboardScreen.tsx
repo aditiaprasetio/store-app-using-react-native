@@ -1,47 +1,26 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {
-  View,
-  Text,
-  StatusBar,
-  ScrollView,
-  RefreshControl,
-  SafeAreaView,
-  Platform,
-  TouchableOpacity,
-  ImagePropTypes,
-} from 'react-native';
+import {View, Text} from 'react-native';
 import Layout from '../components/Layout';
 import {IPropsDashboard} from '../containers/dashboardContainer';
 import {CarouselProduct} from '../components/CarouselProduct';
 import {CarouselBanner} from '../components/CarouselBanner';
+import {FONT} from '../assets/style';
 
 const DashboardScreen = (props: IPropsDashboard) => {
   return (
-    <Layout menu="dashboard">
+    <Layout>
       <View>
-        <Text style={{fontWeight: 'bold', fontSize: 18}}>Nike App Store</Text>
+        <Text style={[FONT.title]}>Nike App Store</Text>
       </View>
 
-      <View style={{marginTop: 30}}>
+      <View style={{marginTop: 50}}>
         <CarouselBanner />
       </View>
 
-      <View style={{marginTop: 30}}>
+      <View style={{marginTop: 50}}>
         <CarouselProduct onClick={(data: any) => props.addToCart(data)} />
       </View>
-
-      {/* <TouchableOpacity
-        style={{marginTop: 15, padding: 10, backgroundColor: '#333'}}
-        onPress={() =>
-          props.addToCart({
-            id: new Date().getTime(),
-            name: 'Product',
-            price: 1000000,
-          })
-        }>
-        <Text style={{color: '#fff', textAlign: 'center'}}>ADD PRODUCT</Text>
-      </TouchableOpacity> */}
     </Layout>
   );
 };

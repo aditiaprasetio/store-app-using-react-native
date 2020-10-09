@@ -4,18 +4,18 @@ import {
   ADD_TO_CART_SUCCESS,
   ADD_TO_CART_FAILURE,
 } from './cart_types';
-
 import AndroidToast from '../../../components/AndroidToast';
-
-AndroidToast.show('Awesome', AndroidToast.SHORT);
 
 function* addToCart(action: any) {
   try {
     const reducer: any = yield select();
     let list = reducer.rootReducer.cartReducer.list;
+
     list.push(action.payload);
 
     yield put({type: ADD_TO_CART_SUCCESS, payload: list});
+
+    AndroidToast.show('Added ' + action.payload.name, AndroidToast.SHORT);
   } catch (e) {
     yield put({type: ADD_TO_CART_FAILURE});
   }

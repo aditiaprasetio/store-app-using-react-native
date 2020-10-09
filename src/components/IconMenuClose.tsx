@@ -25,7 +25,6 @@ export function IconMenuClose(props: any) {
       }).start();
       Animated.spring(middleBarOpacity, {
         toValue: 0,
-        duration: 30,
       }).start();
     } else {
       Animated.spring(containerAnim, {
