@@ -13,36 +13,36 @@ export function IconMenuClose(props: any) {
     if (active) {
       Animated.spring(containerAnim, {
         toValue: 1,
-      }).start();
+      } as any).start();
       Animated.spring(topBar, {
         toValue: 0.9,
-      }).start();
+      } as any).start();
       Animated.spring(bottomBar, {
         toValue: 0.9,
-      }).start();
+      } as any).start();
       Animated.spring(bottomBarMargin, {
         toValue: -8,
-      }).start();
+      } as any).start();
       Animated.spring(middleBarOpacity, {
         toValue: 0,
-      }).start();
+      } as any).start();
     } else {
       Animated.spring(containerAnim, {
         toValue: 0,
-      }).start();
+      } as any).start();
       Animated.spring(topBar, {
         toValue: 0,
-      }).start();
+      } as any).start();
       Animated.spring(bottomBar, {
         toValue: 0,
-      }).start();
+      } as any).start();
       Animated.spring(bottomBarMargin, {
         toValue: 6,
-      }).start();
+      } as any).start();
       Animated.timing(middleBarOpacity, {
         toValue: 1,
         duration: 600,
-      }).start();
+      } as any).start();
     }
   }, [active]);
   return (
