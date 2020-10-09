@@ -15,7 +15,7 @@ function* addToCart(action: any) {
 
     yield put({type: ADD_TO_CART_SUCCESS, payload: list});
 
-    AndroidToast.show('Added ' + action.payload.name, AndroidToast.SHORT);
+    AndroidToast.show(action.payload.name + ' Added', AndroidToast.SHORT);
   } catch (e) {
     yield put({type: ADD_TO_CART_FAILURE});
   }

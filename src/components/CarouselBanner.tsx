@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {ScrollView, Dimensions, Image, View} from 'react-native';
+import {ScrollView, Dimensions, Image, View, FlatList} from 'react-native';
 
 let {width} = Dimensions.get('window');
 width = width * 0.6;
@@ -29,7 +29,6 @@ export function CarouselBanner() {
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        snapToAlignment="center"
         onScrollEndDrag={onScroll}
         snapToEnd
         scrollEventThrottle={1000}>
@@ -53,6 +52,7 @@ export function CarouselBanner() {
           flexDirection: 'row',
           justifyContent: 'center',
           width: '100%',
+          marginTop: 5,
         }}>
         {banners.map((banner, key) => (
           <View

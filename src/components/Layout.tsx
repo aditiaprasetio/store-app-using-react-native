@@ -63,19 +63,21 @@ function Layout(props: IPropsLayout) {
             <IconMenuClose />
           </View>
           <View style={{flexShrink: 1}}>
-            <View
-              style={{
-                position: 'absolute',
-                backgroundColor: '#f27d79',
-                paddingHorizontal: 5,
-                zIndex: 10,
-                right: 0,
-                borderRadius: 10,
-              }}>
-              <Text style={{fontSize: 10, color: '#ffffff'}}>
-                {props.cartData.list.length}
-              </Text>
-            </View>
+            {props.cartData.list.length > 0 && (
+              <View
+                style={{
+                  position: 'absolute',
+                  backgroundColor: '#f27d79',
+                  paddingHorizontal: 5,
+                  zIndex: 10,
+                  right: 0,
+                  borderRadius: 10,
+                }}>
+                <Text style={{fontSize: 10, color: '#ffffff'}}>
+                  {props.cartData.list.length}
+                </Text>
+              </View>
+            )}
             <Ionicons name="cart" size={30} color="#444" />
           </View>
         </View>

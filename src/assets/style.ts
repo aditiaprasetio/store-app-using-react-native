@@ -22,6 +22,7 @@ const LAYOUT = StyleSheet.create({
   },
   bottom_menu: {
     position: 'absolute',
+    backgroundColor: '#f2f2f2',
     flexDirection: 'row',
     height: 50,
     width: '100%',

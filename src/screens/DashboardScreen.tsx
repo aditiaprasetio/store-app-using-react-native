@@ -14,11 +14,11 @@ const DashboardScreen = (props: IPropsDashboard) => {
         <Text style={[FONT.title]}>Nike App Store</Text>
       </View>
 
-      <View style={{marginTop: 50}}>
+      <View style={{marginTop: 40}}>
         <CarouselBanner />
       </View>
 
-      <View style={{marginTop: 50}}>
+      <View style={{marginTop: 40}}>
         <CarouselProduct onClick={(data: any) => props.addToCart(data)} />
       </View>
     </Layout>

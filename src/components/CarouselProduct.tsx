@@ -8,6 +8,7 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
+import {FlatList} from 'react-native-gesture-handler';
 
 const {width} = Dimensions.get('window');
 const height = width * 0.8;
@@ -43,63 +44,63 @@ const products = [
     source: require('../assets/products/product1.png'),
   },
 ];
+
 export function CarouselProduct(props: IPropsCarouselProduct) {
+  const _renderItem = ({item}: any) => {
+    return (
+      <View
+        key={item.id}
+        style={{
+          shadowColor: '#000',
+          shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+          shadowOpacity: 0.25,
+          shadowRadius: 3.84,
+          elevation: 5,
+          width: 130,
+          marginRight: 20,
+          overflow: 'hidden',
+          borderRadius: 8,
+        }}>
+        <Image source={item.source} resizeMode="contain" style={{width: 130}} />
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            backgroundColor: '#747474',
+            marginTop: 0,
+            padding: 7,
+            borderBottomLeftRadius: 8,
+            borderBottomRightRadius: 8,
+          }}>
+          <TouchableOpacity
+            style={{
+              width: 15,
+              height: 15,
+              backgroundColor: '#ffffff',
+              borderRadius: 4,
+              marginRight: 5,
+            }}
+            onPress={() => props.onClick(item)}>
+            <Text style={{color: '#444444', fontSize: 11, textAlign: 'center'}}>
+              +
+            </Text>
+          </TouchableOpacity>
+          <Text style={{fontSize: 11, color: '#ffffff'}}>{item.name}</Text>
+        </View>
+      </View>
+    );
+  };
   return (
-    <ScrollView
-      contentContainerStyle={{padding: 10}}
+    <FlatList
+      style={{padding: 10}}
       horizontal
       pagingEnabled
-      showsHorizontalScrollIndicator={false}>
-      {products.map((product) => (
-        <View
-          key={product.id}
-          style={{
-            shadowColor: '#000',
-            shadowOffset: {
-              width: 0,
-              height: 2,
-            },
-            shadowOpacity: 0.25,
-            shadowRadius: 3.84,
-            elevation: 5,
-            width: 130,
-            marginRight: 20,
-            overflow: 'hidden',
-            borderRadius: 8,
-          }}>
-          <Image
-            source={product.source}
-            resizeMode="contain"
-            style={{width: 130}}
-          />
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              backgroundColor: '#747474',
-              marginTop: 0,
-              padding: 7,
-              borderBottomLeftRadius: 8,
-              borderBottomRightRadius: 8,
-            }}>
-            <TouchableOpacity
-              style={{
-                width: 15,
-                height: 15,
-                backgroundColor: '#ffffff',
-                borderRadius: 4,
-                marginRight: 5,
-              }}
-              onPress={() => props.onClick(product)}>
-              <Text
-                style={{color: '#444444', fontSize: 11, textAlign: 'center'}}>
-                +
-              </Text>
-            </TouchableOpacity>
-            <Text style={{fontSize: 11, color: '#ffffff'}}>{product.name}</Text>
-          </View>
-        </View>
-      ))}
-    </ScrollView>
+      showsHorizontalScrollIndicator={false}
+      data={products}
+      renderItem={_renderItem}
+    />
   );
 }
