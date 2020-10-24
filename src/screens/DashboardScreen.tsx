@@ -22,15 +22,19 @@ const DashboardScreen = (props: IPropsDashboard) => {
   const init = () => {
     fetchListStore()
       .then((res) => {
-        console.info('RES', Object.keys(res.data));
+        res.data = res.data.map((item: any) => {
+          item.store_business = item.store_business.trim();
+          if (item.store_business == '') {
+            // item.store_business = 'Unknown';
+            item.store_business = item.store_name;
+          }
+          return item;
+        });
+
         setListStoreBranch(res.data);
         setAllListStoreBranch(res.data);
 
         const list: any[] = res.data.reduce((acc: any[], curr: any) => {
-          if (curr.store_business === '') {
-            // curr.store_business = 'Unknown';
-            curr.store_business = curr.store_name;
-          }
           const idx = acc.findIndex(
             (item: any) => item.store_business === curr.store_business,
           );
@@ -44,7 +48,7 @@ const DashboardScreen = (props: IPropsDashboard) => {
           return acc;
         }, []);
 
-        console.info('list', list);
+        list.sort((a, b) => b.total_branch - a.total_branch);
 
         setListStore(list);
         setAllListStore(list);
@@ -55,16 +59,19 @@ const DashboardScreen = (props: IPropsDashboard) => {
   };
 
   const searchByKeyword = (keyword: string) => {
+    console.info('keyword', keyword);
     if (keyword) {
       let listStore: any[] = search(keyword, listAllStore, [
-        'store_business',
         'store_name',
+        'store_business',
       ]);
+      listStore = listStore.filter((item) => item.poin > 0);
       setListStore(listStore);
+      console.info(listStore.length);
 
       let listBranch: any[] = search(keyword, listAllStoreBranch, [
-        'store_business',
         'store_name',
+        'store_business',
       ]);
       setListStoreBranch(listBranch);
     } else {
@@ -137,7 +144,7 @@ const DashboardScreen = (props: IPropsDashboard) => {
         <ListStore
           data={listStoreBranch
             .filter((item: any) => item.num_offers > 0)
-            .sort((a: any, b: any) => b.num_offers - a.num_offers)}
+            .sort((a: any, b: any) => a.num_offers - b.num_offers)}
         />
       </View>
     </Layout>

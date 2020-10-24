@@ -1,7 +1,7 @@
 export function search(keyword: string, list: any[], cols: string[]) {
   if (!keyword)
     return list.map((item) => {
-      return { ...item, poin: 0 };
+      return {...item, poin: 0};
     });
 
   const keywords = keyword
@@ -14,12 +14,12 @@ export function search(keyword: string, list: any[], cols: string[]) {
       list[index].poin = 0;
       for (const word of keywords) {
         for (const col of cols) {
-          console.info(
-            index,
-            list[index][col],
-            word,
-            list[index][col] && list[index][col].toLowerCase().includes(word),
-          );
+          // console.info(
+          //   index,
+          //   list[index][col],
+          //   word,
+          //   list[index][col] && list[index][col].toLowerCase().includes(word),
+          // );
           if (
             list[index][col] &&
             list[index][col].toLowerCase().includes(word)
