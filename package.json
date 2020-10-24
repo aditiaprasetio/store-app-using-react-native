@@ -1,5 +1,5 @@
 {
-  "name": "nikeappstore",
+  "name": "storeapp",
   "version": "0.0.1",
   "private": true,
   "author": "Aditia Prasetio",
@@ -19,6 +19,7 @@
   "dependencies": {
     "@react-native-community/async-storage": "^1.11.0",
     "@react-native-community/masked-view": "^0.1.10",
+    "@react-navigation/bottom-tabs": "^5.9.2",
     "@react-navigation/native": "^5.7.6",
     "@react-navigation/stack": "^5.9.3",
     "axios": "^0.19.2",

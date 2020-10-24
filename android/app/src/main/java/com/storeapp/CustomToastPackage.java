@@ -1,6 +1,6 @@
 // CustomToastPackage.java
 
-package com.nikeappstore;
+package com.storeapp;
 
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;

@@ -12,7 +12,6 @@ import {
 } from 'react-native';
 import {connect} from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {IconMenuClose} from './IconMenuClose';
 import {ICartState} from '../redux/reducers/cart';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {LAYOUT} from '../assets/style';
@@ -22,6 +21,7 @@ type IPropsLayout = {
   initial?: string;
   children: any;
   menu?: string;
+  onRefresh: () => void;
 };
 
 const listMenu = [
@@ -51,94 +51,22 @@ function Layout(props: IPropsLayout) {
         flex: 1,
         backgroundColor: '#ffffff',
       }}>
-      <StatusBar backgroundColor="#333333" barStyle="light-content" />
-
-      {/** BACKGROUND ROUNDED */}
-      <View style={LAYOUT.background_rounded}></View>
+      <StatusBar backgroundColor="#f2f2f2" barStyle="dark-content" />
 
       <View style={{flex: 1, zIndex: 10}}>
-        {/** HEADER */}
-        <View style={LAYOUT.header}>
-          <View style={{flexShrink: 1}}>
-            <IconMenuClose />
-          </View>
-          <View style={{flexShrink: 1}}>
-            {props.cartData.list.length > 0 && (
-              <View
-                style={{
-                  position: 'absolute',
-                  backgroundColor: '#f27d79',
-                  paddingHorizontal: 5,
-                  zIndex: 10,
-                  right: 0,
-                  borderRadius: 10,
-                }}>
-                <Text style={{fontSize: 10, color: '#ffffff'}}>
-                  {props.cartData.list.length}
-                </Text>
-              </View>
-            )}
-            <Ionicons name="cart" size={30} color="#444" />
-          </View>
-        </View>
-
         {/** MAIN CONTENT */}
         <ScrollView
-          contentContainerStyle={{flexGrow: 1, padding: 15}}
+          contentContainerStyle={{flexGrow: 1, paddingBottom: 100}}
           scrollEventThrottle={400}
           refreshControl={
             <RefreshControl
               refreshing={false}
-              onRefresh={() => console.info('refresh')}
+              onRefresh={() => props.onRefresh()}
             />
           }
           showsVerticalScrollIndicator={false}>
           {props.children}
         </ScrollView>
-
-        {/** BOTTOM TAB */}
-        <View style={LAYOUT.bottom_menu}>
-          {listMenu.map((menu, key) => {
-            return (
-              <TouchableOpacity
-                onPress={() => navigation.navigate(menu.key)}
-                key={menu.key}
-                style={{
-                  flex: 1,
-                  alignItems: 'center',
-                  // backgroundColor: '#f2f2f2',
-                  padding: 10,
-                  justifyContent: 'center',
-                }}>
-                {route.name === menu.key ? (
-                  <Ionicons
-                    name={menu.icon_selected}
-                    size={30}
-                    style={[
-                      key === 0
-                        ? {alignSelf: 'flex-start'}
-                        : key === listMenu.length - 1
-                        ? {alignSelf: 'flex-end'}
-                        : {},
-                    ]}
-                  />
-                ) : (
-                  <Ionicons
-                    name={menu.icon}
-                    size={30}
-                    style={[
-                      key === 0
-                        ? {alignSelf: 'flex-start'}
-                        : key === listMenu.length - 1
-                        ? {alignSelf: 'flex-end'}
-                        : {},
-                    ]}
-                  />
-                )}
-              </TouchableOpacity>
-            );
-          })}
-        </View>
       </View>
     </SafeAreaView>
   );

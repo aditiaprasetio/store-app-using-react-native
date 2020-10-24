@@ -1,6 +1,6 @@
 // AndroidToast.java
 
-package com.nikeappstore;
+package com.storeapp;
 
 import android.widget.Toast;
 

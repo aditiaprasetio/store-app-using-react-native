@@ -4,7 +4,6 @@ import {
   ADD_TO_CART_SUCCESS,
   ADD_TO_CART_FAILURE,
 } from './cart_types';
-import AndroidToast from '../../../components/AndroidToast';
 
 function* addToCart(action: any) {
   try {
@@ -14,8 +13,6 @@ function* addToCart(action: any) {
     list.push(action.payload);
 
     yield put({type: ADD_TO_CART_SUCCESS, payload: list});
-
-    AndroidToast.show(action.payload.name + ' Added', AndroidToast.SHORT);
   } catch (e) {
     yield put({type: ADD_TO_CART_FAILURE});
   }

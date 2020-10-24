@@ -141,7 +141,7 @@ android {
     flavorDimensions "default"
 
     defaultConfig {
-        applicationId project.env.get("APP_ID") // com.nikeappstore.dev
+        applicationId project.env.get("APP_ID") // com.storeapp.dev
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode project.env.get("APP_VERSION_CODE").toInteger()
@@ -154,7 +154,7 @@ android {
         multiDexEnabled true
 
         // react-native-config
-        resValue "string", "build_config_package", "com.nikeappstore"
+        resValue "string", "build_config_package", "com.storeapp"
     }
     splits {
         abi {
@@ -173,9 +173,9 @@ android {
         }
         release {
             storeFile file('release.keystore')
-            storePassword 'android-nikeappstore-release-2020'
-            keyAlias 'androidReleaseNikeAppStoreKey'
-            keyPassword 'android-nikeappstore-release-2020'
+            storePassword 'android-storeapp-release-2020'
+            keyAlias 'androidReleasestoreappKey'
+            keyPassword 'android-storeapp-release-2020'
         }
     }
     buildTypes {
@@ -193,34 +193,34 @@ android {
     }
     productFlavors {
         dev {
-            applicationId "com.nikeappstore.dev"
+            applicationId "com.storeapp.dev"
             minSdkVersion rootProject.ext.minSdkVersion
             targetSdkVersion rootProject.ext.targetSdkVersion
             versionCode project.env.get("APP_VERSION_CODE").toInteger()
             versionName project.env.get("APP_VERSION_NAME") + "-" + project.env.get("APP_STAGE")
 
             // react-native-config
-            // resValue "string", "build_config_package", "com.nikeappstore"
+            // resValue "string", "build_config_package", "com.storeapp"
         }
         staging {
-            applicationId "com.nikeappstore.staging"
+            applicationId "com.storeapp.staging"
             minSdkVersion rootProject.ext.minSdkVersion
             targetSdkVersion rootProject.ext.targetSdkVersion
             versionCode project.env.get("APP_VERSION_CODE").toInteger()
             versionName project.env.get("APP_VERSION_NAME") + "-" + project.env.get("APP_STAGE")
 
             // react-native-config
-            // resValue "string", "build_config_package", "com.nikeappstore"
+            // resValue "string", "build_config_package", "com.storeapp"
         }
         production {
-            applicationId "com.nikeappstore"
+            applicationId "com.storeapp"
             minSdkVersion rootProject.ext.minSdkVersion
             targetSdkVersion rootProject.ext.targetSdkVersion
             versionCode project.env.get("APP_VERSION_CODE").toInteger()
             versionName project.env.get("APP_VERSION_NAME")
 
             // react-native-config
-            // resValue "string", "build_config_package", "com.nikeappstore"
+            // resValue "string", "build_config_package", "com.storeapp"
         }
     }
 
