@@ -4,7 +4,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 export default function Header(props: any) {
   return (
-    <View style={{height: 250}}>
+    <View style={{height: 250, overflow: 'hidden'}}>
       <View style={{flexDirection: 'row', zIndex: 10, padding: 20}}>
         <View style={{flexShrink: 1}}>
           <Ionicons name="ios-home" size={25} color="#ffffff" />
@@ -39,6 +39,33 @@ export default function Header(props: any) {
         style={{position: 'absolute', zIndex: 0, height: 250}}
         resizeMode="cover"
       />
+
+      <View
+        style={{
+          position: 'absolute',
+          bottom: -10,
+          left: -20,
+          width: 110,
+          height: 110,
+          padding: 10,
+          paddingLeft: 20,
+          borderRadius: 50,
+          backgroundColor: '#FFAE38',
+          zIndex: 0,
+        }}>
+        <Text style={{paddingLeft: 10, fontSize: 20, color: '#ffffff'}}>
+          Diskon
+        </Text>
+        <Text
+          style={{
+            paddingLeft: 10,
+            fontSize: 30,
+            fontWeight: 'bold',
+            color: '#ffffff',
+          }}>
+          50%
+        </Text>
+      </View>
 
       <View
         style={{
